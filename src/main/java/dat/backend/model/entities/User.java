@@ -7,6 +7,22 @@ public class User
     private String username;
     private String password;
     private String role;
+    private String firstName;
+    private String lastName;
+    private int phoneNumber;
+
+    //Customer har order ID, men det har employee ikke.....
+
+
+    public User(String username, String password, String role, String firstName, String lastName, int phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
+
 
     public User(String username, String password, String role)
     {
