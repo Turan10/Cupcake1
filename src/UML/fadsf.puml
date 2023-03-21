@@ -1,0 +1,155 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Login{
++ innit()
++ doGet(HttpServletRequest request, HttpServletResponse response)
++ doPost(HttpServletRequest request, HttpServletResponse response)
+- ConnectionPool connectionPool
+}
+
+class LogOut{
++ doGet(HttpServletRequest request, HttpServletResponse response)
+}
+
+class ApplicationStart{
+- static ConnectionPool connectionPool
++ applicationStart()
++ void contextInitialized(ServletContextEvent sce)
++ static getConnectionPool
++ void contextDestroyed((ServletContextEvent sce)
+- void unregisterJDBCdrivers()
+
+}
+
+
+class DatabaseException{
++ DatabaseException(String message)
++ DatabaseException(Exception ex, String message)
+}
+
+class ConnectionPool{
+- HikariDataSource ds
+- static String USER = "root"
+- static String PASSWORD = "Canerturan1"
+- static String URL = "jdbc:mysql://localhost:3306/Cupcake"
+
++ ConnectionPool()
++ ConnectionPool(String USER, String PASSWORD, String URL)
++ Connection getConnection()
++ void close()
+}
+
+class UserFacade{
++ static User login(String username, String password, ConnectionPool connectionPool)
++ static User createUser(String username, String password, String role, ConnectionPool connectionPool)
+}
+
+class UserMapper{
+static User login(String username, String password, ConnectionPool connectionPool)
+static User createUser(String username, String password, String role, ConnectionPool connectionPool)
+}
+
+class Authentication{
+public static boolean isRoleAllowed(String role, HttpServletRequest request)
+}
+
+class User {
+- String username
+- String password
+- String role
+- String firstName
+- String lastName
+- int phoneNumber
+
++ User(String username, String password, String role, String firstName, String lastName, int phoneNumber)
++ User(String username, String password, String role)
++ String getUsername()
++ void setUsername(String username)
++ String getPassword()
++ void setPassword(String password)
++ String getRole()
++ void setRole(String role)
++ boolean equals(Object o)
++ int hashCode()
++ String toString()
+}
+
+class OlskerCupcake{
+- String companyName
+- int cvrNumber
+- String address
+- int phoneNumber
+- int zipNumber
+- String email
+
++ getCompanyName(companyName)
++ getCvrNumber(cvrNumber)
++ getAddress(address)
++ getPhoneNumber(phoneNumber)
++ getZipNumber(zipNumber)
++ getEmail(email)
+}
+
+class Order{
+
+- Instant instant
+- int orderId
+- User user
+- Cupcake product (Måske en liste?)
+
++ Instant getInstant(instant)
++ int getOrderId(orderId)
++ User getUser(user)
++ Cupcake getProduct(product)
+
+}
+class Cupcake{
+- int id
+- int totalPrice
+
++ int calculateTotalPrice(Topping top, Bottom bottom)
++ int getid(id)
+
+}
+
+class Topping{
+
+- private int id
+- private String details
+- private int price
+
++ getDetails(details)
++ getprice(price)
+
+
+}
+
+class Bottom{
+
+- private int id
+- private String details
+- private int price
+
++ getDetails(details)
++ getprice(price)
+
+}
+
+class ShoppingCart{
+- int counter
+- int totalPrice
+- String info
+
++ calculateTotalPrice(List<Cupcake> cupcakelist)
+
++ String getinfo(String info)
+
++ String getNamesofCupcake(List<Cupcake> cupcakeList)
+
+}
+
+
+
+
+@enduml
