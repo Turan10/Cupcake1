@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `Cupcake`.`Customer`
     `phone`     INT         NOT NULL,
     `email`     VARCHAR(45) NOT NULL,
     `orderID`   INT         NOT NULL,
+    `account`   INT         NULL,
     PRIMARY KEY (`phone`),
     UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
     INDEX `fk_Customer_Order1_idx` (`orderID` ASC) VISIBLE,
@@ -169,21 +170,17 @@ CREATE TABLE IF NOT EXISTS `Cupcake`.`user`
     `userName`       VARCHAR(45) NOT NULL,
     `Password`       VARCHAR(45) NOT NULL,
     `role`           VARCHAR(45) NULL DEFAULT NULL,
-    `employee_cpr`   INT         NULL,
-    `Customer_phone` INT         NULL,
+    `employee_cpr`   INT         NULL DEFAULT NULL,
+    `Customer_phone` INT         NULL DEFAULT NULL,
     PRIMARY KEY (`iduser`),
     INDEX `fk_user_employee1_idx` (`employee_cpr` ASC) VISIBLE,
     INDEX `fk_user_Customer1_idx` (`Customer_phone` ASC) VISIBLE,
+    CONSTRAINT `fk_user_Customer1`
+        FOREIGN KEY (`Customer_phone`)
+            REFERENCES `Cupcake`.`Customer` (`phone`),
     CONSTRAINT `fk_user_employee1`
         FOREIGN KEY (`employee_cpr`)
             REFERENCES `Cupcake`.`employee` (`cpr`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION,
-    CONSTRAINT `fk_user_Customer1`
-        FOREIGN KEY (`Customer_phone`)
-            REFERENCES `Cupcake`.`Customer` (`phone`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 2

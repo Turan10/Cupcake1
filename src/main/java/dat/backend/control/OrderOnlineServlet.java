@@ -30,13 +30,18 @@ public class OrderOnlineServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<Bottom> bottoms = BottomFacade.getAllBottoms(connectionPool);
-            List<Topping> toppings = ToppingFacade.getAllToppings(connectionPool);
 
-            request.setAttribute("bottomList", bottoms);
-            request.setAttribute("toppingList", toppings);
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String step = request.getParameter("step");
+        try {
+            if (step == null || step.equals("bottoms")) {
+                List<Bottom> bottoms = BottomFacade.getAllBottoms(connectionPool);
+                request.setAttribute("bottomList", bottoms);
+            } else if (step.equals("toppings")) {
+                List<Topping> toppings = ToppingFacade.getAllToppings(connectionPool);
+                request.setAttribute("toppingList", toppings);
+            }
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/OrderOnline.jsp");
             requestDispatcher.forward(request, response);
