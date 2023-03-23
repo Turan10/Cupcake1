@@ -26,6 +26,12 @@
         <td><%=resultset.getInt("customerID") %></td>
         <td><%=resultset.getInt("cupcakeId") %></td>
         <td><%=resultset.getInt("totalPrice") %></td>
+        <td>
+            <form method="post" action="RemoveOrderServlet">
+                <input type="hidden" name="orderID" value="<%=resultset.getInt("orderID") %>">
+                <input type="submit" value="Remove">
+            </form>
+        </td>
     </TR>
     <% } %>
 </TABLE>

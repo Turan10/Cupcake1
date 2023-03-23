@@ -21,7 +21,10 @@ public class OrderMapper {
                     int customerID = rs.getInt("customerID");
                     int cupcakeID = rs.getInt("CupcakeID");
                     int totalPrice = rs.getInt("Total price");
+
+                    orderList.add(new Order(orderID,customerID,cupcakeID,totalPrice));
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
