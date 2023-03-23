@@ -15,8 +15,10 @@
 
     <jsp:body>
 
-        <p>An error has occured. This is the best message we can come up
-            with right now: </p>
+        <p>
+            An error has occured. This is the best message we can come up
+            with right now:
+        </p>
 
         <c:if test="${pageContext.errorData.statusCode == 404 }">
             <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
