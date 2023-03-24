@@ -58,11 +58,13 @@
 
         <% } else if (step.equals("toppings")) { %>
     <h2 class="text-center text-white">Selected Cupcake bottom:</h2>
-    <% Bottom bottomOfChoice = (Bottom) request.getAttribute("bottomOfChoice"); %>
-    <div class = "text-center text-white">
+        <% Bottom bottomOfChoice = (Bottom) request.getAttribute("bottomOfChoice"); %>
+    <div class="text-center text-white">
 
-        <p><strong>Details:</strong><%= bottomOfChoice.getDetails()%></p>
-        <p><strong>Price:</strong><%= bottomOfChoice.getPrice()%></p>
+        <p><strong>Details:</strong><%= bottomOfChoice.getDetails()%>
+        </p>
+        <p><strong>Price:</strong><%= bottomOfChoice.getPrice()%>
+        </p>
 
     </div>
     <br>

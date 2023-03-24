@@ -27,4 +27,12 @@ public class ShoppingCart {
     }
 
 
+    public void deleteCupcake(int cupcakeId) {
+        for (Cupcake cupcake : cupcakes) {
+            if(cupcake.getId() == cupcakeId) {
+                cupcakes.remove(cupcake);
+                break;
+            }
+        }
+    }
 }
