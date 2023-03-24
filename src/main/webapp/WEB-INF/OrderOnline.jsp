@@ -46,7 +46,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= bottom.getDetails() %>
                     </h5>
-                    <p class="card-text">Price: $<%= bottom.getPrice() %>
+                    <p class="card-text">Price: <%= bottom.getPrice() %> kr.
                     </p>
                     <button type="submit" name="bottomId" value="<%= bottom.getId() %>" class="btn btn-primary">Select
                     </button>
@@ -63,7 +63,7 @@
 
         <p><strong>Details:</strong><%= bottomOfChoice.getDetails()%>
         </p>
-        <p><strong>Price:</strong><%= bottomOfChoice.getPrice()%>
+        <p><strong>Price:</strong><%= bottomOfChoice.getPrice()%> kr.
         </p>
 
     </div>
@@ -79,7 +79,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= topping.getDetails() %>
                     </h5>
-                    <p class="card-text">Price: $<%= topping.getPrice() %>
+                    <p class="card-text">Price: <%= topping.getPrice() %> kr.
                     </p>
                     <button type="submit" name="toppingId" value="<%= topping.getId() %>" class="btn btn-primary">
                         Select

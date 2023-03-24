@@ -62,7 +62,7 @@
             <h5><%= cupcake.getBottom().getDetails() %> with <%= cupcake.getTop().getDetails() %>
             </h5>
 
-            <p>Price: <%= cupcake.getTotalPrice() %>
+            <p>Price: <%= cupcake.getTotalPrice() %> kr.
             </p>
             <form action="deletefromcart" method="post">
                 <input type="hidden" name="cupcakeId" value="<%= cupcakes.indexOf(cupcake) %>">
