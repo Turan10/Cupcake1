@@ -14,6 +14,14 @@ public class Cupcake {
         this.totalPrice = calculateTotalPrice();
     }
 
+    public Cupcake(Topping top, Bottom bottom) {
+        this.top = top;
+        this.bottom = bottom;
+        this.totalPrice = calculateTotalPrice();
+    }
+
+
+
     public int calculateTotalPrice() {
         return top.getPrice() + bottom.getPrice();
     }
@@ -33,6 +41,7 @@ public class Cupcake {
     public int getTotalPrice() {
         return totalPrice;
     }
+
 
 
 }

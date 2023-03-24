@@ -35,4 +35,27 @@ public class ToppingMapper {
 
 
     }
+
+    public static Topping getToppingById(int toppingId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM Top WHERE id = ?";
+        Topping topping = null;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, toppingId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String details = resultSet.getString("details");
+                        int price = resultSet.getInt("price");
+
+                        topping = new Topping(id, details, price);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e, "Fejl i tilgangen til databasen");
+        }
+        return topping;
+    }
 }

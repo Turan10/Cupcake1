@@ -36,4 +36,27 @@ public class BottomMapper {
 
 
     }
+
+    public static Bottom getBottomById(int bottomId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM Bottom WHERE id = ?";
+        Bottom bottom = null;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, bottomId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String details = resultSet.getString("details");
+                        int price = resultSet.getInt("price");
+
+                        bottom = new Bottom(id, details, price);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e, "Fejl i tilgangen til databasen");
+        }
+        return bottom;
+    }
 }
