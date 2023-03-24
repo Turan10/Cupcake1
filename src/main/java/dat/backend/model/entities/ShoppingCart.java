@@ -35,4 +35,8 @@ public class ShoppingCart {
             }
         }
     }
+
+    public int getNumberOfCupcakes() {
+        return cupcakes.size();
+    }
 }

@@ -32,11 +32,21 @@
             margin: 15px;
             text-align: center;
         }
+
+        .fixed-center {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
     </style>
 </head>
 <body>
 
 <h1>Shopping Cart</h1>
+
 
 <h4>Items</h4>
 
@@ -68,6 +78,31 @@
         <%   }
     }
     %>
+
+    <div class="fixed-center">
+
+
+        <a href="checkout" class="badge badge-pill badge-success text-dark p-3">Checkout</a>
+
+
+    </div>
+
+    <div class="fixed-center" style="left: 10%;">
+        <p class="badge badge-pill badge-primary bg-white text-dark p-3">
+            Number of cupcakes = <%= shoppingCart.getCupcakes().size() %>
+            <br>
+            Total price = <%= shoppingCart.getTotalPrice() %> kr.
+        </p>
+
+    </div>
+
+
+    <div class="position-absolute" style="top: 50%; right: 10%;">
+
+        <a href="orderonline" class="badge badge-pill badge-primary bg-white text-dark p-3">Back to shop</a>
+
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
