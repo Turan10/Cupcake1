@@ -11,4 +11,8 @@ public class BottomFacade {
     public static List<Bottom> getAllBottoms(ConnectionPool connectionPool) throws DatabaseException {
         return BottomMapper.getAllBottoms(connectionPool);
     }
+
+    public static Bottom getBottomById(int bottomId, ConnectionPool connectionPool) throws DatabaseException {
+        return BottomMapper.getBottomById(bottomId, connectionPool);
+    }
 }

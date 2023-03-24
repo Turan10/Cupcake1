@@ -10,4 +10,8 @@ public class ToppingFacade {
     public static List<Topping> getAllToppings(ConnectionPool connectionPool) throws SQLException, DatabaseException {
         return ToppingMapper.getAllToppings(connectionPool);
     }
+
+    public static Topping getToppingById(int toppingId, ConnectionPool connectionPool) throws DatabaseException {
+        return ToppingMapper.getToppingById(toppingId, connectionPool);
+    }
 }
