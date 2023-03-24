@@ -1,26 +1,37 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="dat.backend.model.persistence.ConnectionPool" %>
+<%@ page import="dat.backend.model.config.ApplicationStart" %>
 <HTML>
 <HEAD>
     <TITLE>VIEW ALL ORDERS</TITLE>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
 </HEAD>
-<BODY BGCOLOR="#ffc0cb">
-<H1>VIEW ALL ORDERS </H1>
+<body class="bg-light" bgcolor="#ffc0cb">
+<center><H1>VIEW ALL ORDERS </H1></center>
 <%
-    ConnectionPool connectionPool = new ConnectionPool("root","martin123","jdbc:mysql://localhost:3306/Cupcake");
-    Statement statement = connectionPool.getConnection().createStatement(); ;
-    ResultSet resultset = statement.executeQuery("select * from Cupcake.Order");
+    // Get the connection pool object from ApplicationStart
+    ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+    Connection connection = connectionPool.getConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultset = statement.executeQuery("SELECT * FROM Cupcake.Order");
+
+
 %>
-<TABLE BORDER="1">
-    <TR>
-        <TH>Created</TH>
-        <TH>OrderID</TH>
-        <TH>CustomerID</TH>
-        <TH>CupcakeID</TH>
-        <TH>Total price</TH>
-    </TR>
+<table class="table table-striped" width="80%">
+    <thead>
+    <tr>
+        <th>Created</th>
+        <th>OrderID</th>
+        <th>CustomerID</th>
+        <th>CupcakeID</th>
+        <th>Total price</th>
+        <th>Remove button</th>
+    </tr>
+    </thead>
+    <tbody>
     <% while(resultset.next()){ %>
-    <TR>
+    <tr>
         <td><%=resultset.getTimestamp("created") %></td>
         <td><%=resultset.getInt("orderID") %></td>
         <td><%=resultset.getInt("customerID") %></td>
@@ -29,11 +40,11 @@
         <td>
             <form method="post" action="remove_order">
                 <input type="hidden" name="orderID" value="<%=resultset.getInt("orderID") %>">
-                <input type="submit" value="Remove">
+                <button type="submit" class="btn btn-danger">Remove</button>
             </form>
         </td>
-    </TR>
+    </tr>
     <% } %>
-</TABLE>
-</BODY>
+    </tbody>
+</table>
 </HTML>
