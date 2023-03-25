@@ -95,11 +95,17 @@
     <div class="square"></div>
     <div class="row">
         <div class="col text-center">
+            <a href="homepage.jsp">
             <button type="button" class="btn btn-primary">HOME</button>
+            </a>
+            <a href="about-us.jsp">
             <button type="button" class="btn btn-primary">ABOUT US</button>
+            </a>
             <button type="button" class="btn btn-primary">MENU</button>
             <button type="button" class="btn btn-primary">ORDER ONLINE</button>
+            <a href="contact-us.jsp">
             <button type="button" class="btn btn-primary">CONTACT US</button>
+            </a>
         </div>
     </div>
 </div>
