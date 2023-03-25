@@ -93,11 +93,11 @@
         }
 
         .aboutuscupcakelogo {
-            width: 240px;
-            height: 320px;
+            width: 400px;
+            height: 410px;
             position: absolute;
-            top: 280px;
-            left: 345px;
+            top: 240px;
+            left: 265px;
             z-index: 2;
         }
 
@@ -123,6 +123,7 @@
             border-radius: 5px;
             background-color: white;
             padding: 20px;
+            
         }
 
         input[type=text], select, textarea {
@@ -148,6 +149,13 @@
             cursor: pointer;
         }
 
+        .googlemaps {
+            width: 450px;
+            height: 450px;
+            z-index: 2;
+            margin-left: 300px;
+        }
+
     </style>
 </head>
 <body>
@@ -161,6 +169,7 @@
         </a>
     </div>
     <div class="textsquare"></div>
+
 </div>
 <div class="paragraph">
     <form action="action_page.php">
@@ -187,7 +196,7 @@
 </div>
 
     <div class="square2"></div>
-    <div><img src="${pageContext.request.contextPath}/images/about-us-cupcake.png" width="30px;" class="aboutuscupcakelogo"/></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9098.855202108787!2d14.7971999!3d55.2407315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46550643ea4740df%3A0xa00afcc1d51fdc0!2s3770%20Olsker!5e0!3m2!1sda!2sdk!4v1679780335841!5m2!1sda!2sdk" class="aboutuscupcakelogo" style="border: 2px solid plum" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="square"></div>
 
     <div class="row">
