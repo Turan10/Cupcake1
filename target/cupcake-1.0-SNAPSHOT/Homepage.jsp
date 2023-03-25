@@ -85,7 +85,7 @@
 <body>
 <div class="container-fluid d-flex justify-content-center">
     <div class="logo">
-        <a href="Homepage.jsp">
+        <a href="homepage.jsp">
             <img src="${pageContext.request.contextPath}/images/cupcakelogo.png" width="270px;" class="logo"/>
         </a>
         <a href="login.jsp">
