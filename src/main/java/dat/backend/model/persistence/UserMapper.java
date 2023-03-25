@@ -1,9 +1,11 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +46,7 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (username, password, role) values (?,?,?)";
+        String sql = "insert into user (userName, Password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -67,6 +69,30 @@ class UserMapper
             throw new DatabaseException(ex, "Could not insert username into database");
         }
         return user;
+    }
+
+
+    static ArrayList<User> getAllUsers(ConnectionPool connectionPool) {
+        ArrayList<User> userList = new ArrayList<>();
+        try {
+
+            Connection connection = connectionPool.getConnection();
+
+            String sql = "SELECT * FROM user";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                String name = rs.getString("userName");
+                String password = rs.getString("Password");
+                String role = rs.getString("role");
+
+                User user = new User(name, password, role);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return userList;
     }
 
 
