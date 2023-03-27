@@ -86,8 +86,9 @@ class UserMapper
                 String name = rs.getString("userName");
                 String password = rs.getString("Password");
                 String role = rs.getString("role");
+                int balance = rs.getInt("balance");
 
-                User user = new User(name, password, role);
+                User user = new User(name, password, role, balance);
                 userList.add(user);
             }
         } catch (SQLException e) {
