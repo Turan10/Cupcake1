@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BottomMapper {
+ class BottomMapper {
 
     static List<Bottom> getAllBottoms(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM Bottom";

@@ -29,7 +29,8 @@ class UserMapper
                 if (rs.next())
                 {
                     String role = rs.getString("role");
-                    user = new User(username, password, role);
+                    int balance = rs.getInt("balance");
+                    user = new User(username, password, role, balance);
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -46,7 +47,7 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (userName, Password, role) values (?,?,?)";
+        String sql = "insert into user (userName, Password, role, balance) values (?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -57,7 +58,7 @@ class UserMapper
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, password, role);
+                    user = new User(username, password, role, 0);
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
