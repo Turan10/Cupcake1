@@ -80,6 +80,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     }
+
+
 </style>
 </head>
 <body>
@@ -92,7 +94,9 @@
             <img src="${pageContext.request.contextPath}/images/loginlogo.png" width="30px;" class="loginLogo"/>
         </a>
     </div>
-    <div class="square"></div>
+  
+
+    </div>
     <div class="row">
         <div class="col text-center">
             <button type="button" class="btn btn-primary">HOME</button>

@@ -2,6 +2,7 @@
 <%@ page import="dat.backend.model.entities.Bottom" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/Homepage.jsp" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,17 +23,42 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            margin-left: -15px;
+            margin-right: -15px;
         }
 
         .item {
             margin: 15px;
             text-align: center;
+            flex-basis: calc(33.3333% - 30px);
+        }
+        .content {
+            max-width: 930px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 3px solid deeppink;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-wrapper {
+            padding: 20px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1 class="text-center text-white">Order Cupcakes Online</h1>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="content">
+                <h1 class="text-center text-white">Order Cupcakes Online</h1>
+                <p class="text-center">Choose your cupcake bottom and topping and place your order.</p>
+
+
 
         <% String step = request.getParameter("step"); %>
 
@@ -96,12 +122,19 @@
         <a href="orderonline">Order another cupcake</a>
             <% } %>
 
+
+    </div>
+    </div>
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
                 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
                 crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
                 crossorigin="anonymous"></script>
+
+
+
 </body>
 </html>
 
