@@ -172,7 +172,7 @@
 
 </div>
 <div class="paragraph">
-    <form action="action_page.php">
+    <form action="SaveContactFormServlet" method="post">
 
         <label for="fname">Full name</label>
         <input type="text" id="fname" name="fullname" placeholder="Your full name..">
