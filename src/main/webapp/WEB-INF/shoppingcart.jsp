@@ -93,7 +93,6 @@
             <br>
             Total price = <%= shoppingCart.getTotalPrice() %> kr.
         </p>
-
     </div>
 
 
