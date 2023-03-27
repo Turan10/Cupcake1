@@ -10,26 +10,37 @@ public class User
     private String firstName;
     private String lastName;
     private int phoneNumber;
+    private int balance;
 
     //Customer har order ID, men det har employee ikke.....
 
 
-    public User(String username, String password, String role, String firstName, String lastName, int phoneNumber) {
+    public User(String username, String password, String role, String firstName, String lastName, int phoneNumber, int balance) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.balance = balance;
     }
 
 
-    public User(String username, String password, String role)
+    public User(String username, String password, String role, int balance)
     {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.balance = balance;
     }
+
+
+    public void substractMoneyFromAccount(int pay){
+        this.balance = balance - pay;
+    }
+
+
+
 
     public String getUsername()
     {
@@ -61,6 +72,10 @@ public class User
         this.role = role;
     }
 
+    public int getBalance(){
+        return balance;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -78,12 +93,15 @@ public class User
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", balance=" + balance +
                 '}';
     }
 }

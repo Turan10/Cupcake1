@@ -1,9 +1,11 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +29,8 @@ class UserMapper
                 if (rs.next())
                 {
                     String role = rs.getString("role");
-                    user = new User(username, password, role);
+                    int balance = rs.getInt("balance");
+                    user = new User(username, password, role, balance);
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -44,7 +47,7 @@ class UserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (username, password, role) values (?,?,?)";
+        String sql = "insert into user (userName, Password, role, balance) values (?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -55,7 +58,7 @@ class UserMapper
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, password, role);
+                    user = new User(username, password, role, 0);
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
@@ -67,6 +70,31 @@ class UserMapper
             throw new DatabaseException(ex, "Could not insert username into database");
         }
         return user;
+    }
+
+
+    static ArrayList<User> getAllUsers(ConnectionPool connectionPool) {
+        ArrayList<User> userList = new ArrayList<>();
+        try {
+
+            Connection connection = connectionPool.getConnection();
+
+            String sql = "SELECT * FROM user";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                String name = rs.getString("userName");
+                String password = rs.getString("Password");
+                String role = rs.getString("role");
+                int balance = rs.getInt("balance");
+
+                User user = new User(name, password, role, balance);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return userList;
     }
 
 
