@@ -93,11 +93,11 @@
         }
 
         .aboutuscupcakelogo {
-            width: 240px;
-            height: 320px;
+            width: 400px;
+            height: 410px;
             position: absolute;
-            top: 280px;
-            left: 345px;
+            top: 240px;
+            left: 265px;
             z-index: 2;
         }
 
@@ -113,11 +113,47 @@
         }
 
         .paragraph {
-            margin-left: 100px;
-            margin-top: 125px;
-            margin-left: 410px;
+            max-width: 470px;
+            max-height: 400px;
+            margin-top: 95px;
+            margin-left: 680px;
+            margin-right: 280px;
             z-index: 2;
             position: absolute;
+            border-radius: 5px;
+            background-color: white;
+            padding: 20px;
+
+        }
+
+        input[type=text], select, textarea {
+            width: 100%; /* Full width */
+            padding: 2px; /* Some padding */
+            border: 1px solid #ccc; /* Gray border */
+            border-radius: 2px; /* Rounded borders */
+            box-sizing: border-box; /* Make sure that padding and width stays in place */
+            margin-top: 1px; /* Add a top margin */
+            margin-bottom: 1px; /* Bottom margin */
+            resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+        }
+
+        /* Style the submit button with a specific background color etc */
+        input[type=submit] {
+            width: 100%; /* make the submit button full width */
+            max-width: 450px; /* limit the maximum width of the submit button */
+            background-color: hotpink;
+            color: white;
+            padding: 8px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .googlemaps {
+            width: 450px;
+            height: 450px;
+            z-index: 2;
+            margin-left: 300px;
         }
 
     </style>
@@ -133,39 +169,34 @@
         </a>
     </div>
     <div class="textsquare"></div>
-    <p class="paragraph" style="text-align: center">Olsker Cupcakes
-        is an artisanal cupcake factory
-        <br>
-        based in the heart of the Danish countryside.
-        <br>
-        We specialize in creating delicious, hand-crafted
-        <br>
-        cupcakes made from only the freshest ingredients.
-        <br>
-        From traditional favorites to creative new flavors,
-        <br>
-        we have something for everyone to enjoy.
-        <br>
-        Our team of passionate pastry chefs take pride in
-        <br>
-        creating unique cupcakes with a focus on
-        quality,
-        <br>
-        taste, and presentation.
-        <br>
-        Whether you’re looking for a special treat for a special
-        <br>
-        occasion or just a sweet treat
-        <br>
-        to brighten your day, Olsker Cupcakes has got you covered.
-        <br>
-        Stop by our factory and take home a
-        <br>
-        sweet treat you won’t soon forget!
-    </p>
+
+</div>
+<div class="paragraph">
+    <form action="SaveContactFormServlet" method="post">
+
+        <label for="fname">Full name</label>
+        <input type="text" id="fname" name="fullname" placeholder="Your full name..">
+
+        <label for="lname">Email adress</label>
+        <input type="text" id="lname" name="email" placeholder="Your email adress..">
+
+        <label for="inquiry">Whats the inquiry about?</label>
+        <select id="inquiry" name="inquiry">
+            <option value="orderissues">Order Issues</option>
+            <option value="feedback">Feedback</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
 
     <div class="square2"></div>
-    <div><img src="${pageContext.request.contextPath}/images/about-us-cupcake.png" width="30px;" class="aboutuscupcakelogo"/></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9098.855202108787!2d14.7971999!3d55.2407315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46550643ea4740df%3A0xa00afcc1d51fdc0!2s3770%20Olsker!5e0!3m2!1sda!2sdk!4v1679780335841!5m2!1sda!2sdk" class="aboutuscupcakelogo" style="border: 2px solid plum" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="square"></div>
 
     <div class="row">
