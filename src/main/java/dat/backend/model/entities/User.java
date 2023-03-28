@@ -35,8 +35,13 @@ public class User
     }
 
 
-    public void substractMoneyFromAccount(int pay){
-        this.balance = balance - pay;
+    public boolean subtractMoneyFromAccount(int pay){
+
+        if(this.balance-pay > 0) {
+            this.balance = balance - pay;
+            return true;
+        }
+        return false;
     }
 
 

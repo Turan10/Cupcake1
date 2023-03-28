@@ -1,6 +1,8 @@
 <%@ page import="dat.backend.model.entities.Cupcake" %>
 <%@ page import="java.util.List" %>
-<%@ page import="dat.backend.model.entities.ShoppingCart" %><%--
+<%@ page import="dat.backend.model.entities.ShoppingCart" %>
+<%@ page import="dat.backend.model.entities.User" %>
+<%@ page import="com.mysql.cj.Session" %><%--
   Created by IntelliJ IDEA.
   User: turan
   Date: 23/03/2023
@@ -15,8 +17,9 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
-            background-color: #b841AD;
+            background: pink;
         }
+
 
         .container {
             margin-top: 30px;
@@ -26,6 +29,16 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+        }
+
+        .buttons-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 30px;
         }
 
         .item {
@@ -39,12 +52,24 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+        .item .card{
+            padding: 15px;
+        }
 
 
     </style>
 </head>
 <body>
-
+<div class="container-fluid d-flex justify-content-center">
+    <div class="logo">
+        <a href="Homepage.jsp">
+            <img src="${pageContext.request.contextPath}/images/cupcakelogo.png" width="270px;" class="logo"/>
+        </a>
+        <a href="login.jsp">
+            <img src="${pageContext.request.contextPath}/images/loginlogo.png" width="30px;" class="loginLogo"/>
+        </a>
+    </div>
+</div>
 <h1>Shopping Cart</h1>
 
 
@@ -78,11 +103,14 @@
         <%   }
     }
     %>
-
+<div class="buttons-container">
     <div class="fixed-center">
 
 
-        <a href="checkout" class="badge badge-pill badge-success text-dark p-3">Checkout</a>
+    <form action="checkout" method="post">
+
+        <button type="submit" class="btn btn-primary">Checkout</button>
+    </form>
 
 
     </div>
@@ -101,6 +129,9 @@
         <a href="orderonline" class="badge badge-pill badge-primary bg-white text-dark p-3">Back to shop</a>
 
     </div>
+
+</div>
+</div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

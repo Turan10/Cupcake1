@@ -161,7 +161,7 @@
 <body>
 <div class="container-fluid d-flex justify-content-center">
     <div class="logo">
-        <a href="homepage.jsp">
+        <a href="Homepage.jsp">
             <img src="${pageContext.request.contextPath}/images/cupcakelogo.png" width="270px;" class="logo"/>
         </a>
         <a href="login.jsp">
@@ -201,7 +201,7 @@
 
     <div class="row">
         <div class="col text-center">
-            <a href="homepage.jsp">
+            <a href="Homepage.jsp">
                 <button type="button" class="btn btn-primary">HOME</button>
             </a>
             <a href="about-us.jsp">

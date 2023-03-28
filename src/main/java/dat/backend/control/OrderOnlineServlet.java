@@ -70,6 +70,7 @@ public class OrderOnlineServlet extends HttpServlet {
                 shoppingCart.addCupcake(cupcake);
 
                 request.getRequestDispatcher("/WEB-INF/shoppingcart.jsp").forward(request, response);
+
             }
 
 
