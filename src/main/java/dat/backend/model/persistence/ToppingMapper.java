@@ -13,7 +13,7 @@ import java.util.List;
 
 class ToppingMapper {
     static List<Topping> getAllToppings(ConnectionPool connectionPool) throws DatabaseException, SQLException {
-        String sql = "SELECT * FROM Top";
+        String sql = "SELECT * FROM top";
         List<Topping> toppingList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection()) {

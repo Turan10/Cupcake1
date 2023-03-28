@@ -12,7 +12,7 @@
     <script src="js/scripts.js"></script>
     <style>
         body {
-            background-color: #b841AD;
+            background: pink;
         }
 
         .container {
@@ -47,6 +47,15 @@
         .content-wrapper {
             padding: 20px;
             box-sizing: border-box;
+        }
+
+        .logo {
+            margin-top: -160px;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
     </style>
 </head>

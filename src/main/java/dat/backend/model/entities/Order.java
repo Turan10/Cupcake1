@@ -2,21 +2,26 @@ package dat.backend.model.entities;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class Order {
     private Timestamp timestamp;
     private int orderID;
-    private int customerID;
-    private int cupcakeId;
+    private List<Cupcake> cupcakeList;
     private int totalPrice;
 
-    public Order(int orderID, int customerID, int cupcakeId, int totalPrice) {
+
+    public Order(ShoppingCart shoppingCart) {
         this.timestamp = Timestamp.from(Instant.now());
         this.orderID = orderID;
-        this.customerID = customerID;
-        this.cupcakeId = cupcakeId;
-        this.totalPrice = totalPrice;
+        this.cupcakeList = shoppingCart.getCupcakes();
+        this.totalPrice = shoppingCart.getTotalPrice();
+
     }
+
+    //Ret på databasen, så den passer med vores kode, og ret på mapperne så den indsætter data 2 forskellige steder. Den ene er order, den anden er cupcakes tabellerne
+    // Disse 2 tabeller skal tale med hinanden, så vi kan få fat i alle cupcakes der er i en order. Dette kan gøres ved at have en foreign key i cupcakes tabellen, som refererer til orderID i order tabellen.
 
     public Timestamp getTimestamp() {
         return timestamp;
@@ -26,31 +31,17 @@ public class Order {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
 
-    public int getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    public int getCupcakeId() {
-        return cupcakeId;
-    }
-
-    public void setCupcakeId(int cupcakeId) {
-        this.cupcakeId = cupcakeId;
-    }
-
-    public double getTotalPrice() {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+
+    public List<Cupcake> getCupcakeList() {
+        return cupcakeList;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 }

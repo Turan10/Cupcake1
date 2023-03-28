@@ -18,6 +18,10 @@ public class UserFacade
         return UserMapper.createUser(username, password, role, connectionPool);
     }
 
+    public static void updateBalance(User user, ConnectionPool connectionPool) throws DatabaseException {
+        UserMapper.updateBalance(user, connectionPool);
+    }
+
     public static ArrayList<User> getAllUser(ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.getAllUsers(connectionPool);
     }
