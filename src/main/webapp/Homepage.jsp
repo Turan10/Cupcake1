@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: turan
@@ -90,15 +91,25 @@
         <a href="Homepage.jsp">
             <img src="${pageContext.request.contextPath}/images/cupcakelogo.png" width="270px;" class="logo"/>
         </a>
-        <a href="login.jsp">
-            <img src="${pageContext.request.contextPath}/images/loginlogo.png" width="30px;" class="loginLogo"/>
-        </a>
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                <a href="login.jsp">
+                    <img src="${pageContext.request.contextPath}/images/loginlogo.png" width="30px;" class="loginLogo"/>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <h3>Welcome ${sessionScope.user.username}!</h3>
+            </c:otherwise>
+        </c:choose>
     </div>
 
-    <!--   <div class="square"> -->
-
-    </div>
     <div class="row">
+        <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin'}">
+            <form method="post" action="vieworders">
+            <button class="btn btn-secondary" type="submit">View all orders</button>
+
+        </form>
+        </c:if>
         <div class="col text-center">
             <a href="Homepage.jsp">
             <button type="button" class="btn btn-primary">HOME</button>
@@ -107,12 +118,21 @@
             <button type="button" class="btn btn-primary">ABOUT US</button>
             </a>
             <button type="button" class="btn btn-primary">MENU</button>
+            <a href="login">
             <button type="button" class="btn btn-primary">ORDER ONLINE</button>
+            </a>
             <a href="contact-us.jsp">
             <button type="button" class="btn btn-primary">CONTACT US</button>
             </a>
         </div>
     </div>
+</div>
+
+
+
+<div class="logo">
+    <img src="${pageContext.request.contextPath}/images/Logo.png" width="270px;" class="logo"/>
+
 </div>
 <!-- Include Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

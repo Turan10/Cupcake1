@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="dat.backend.model.entities.Cupcake" %>
 <%@ page import="java.util.List" %>
 <%@ page import="dat.backend.model.entities.ShoppingCart" %>
@@ -76,35 +77,27 @@
 <h4>Items</h4>
 
 <div class="item-container">
-        <% ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
-    if (shoppingCart != null) {
-        List<Cupcake> cupcakes = shoppingCart.getCupcakes();
-        if (cupcakes != null && !cupcakes.isEmpty()) {
-            for (Cupcake cupcake : cupcakes) {
-    %>
-    <div class="item">
-        <div class="item card" style="width: 18rem;">
-            <h5><%= cupcake.getBottom().getDetails() %> with <%= cupcake.getTop().getDetails() %>
-            </h5>
+    <c:set var="shoppingCart" value="${sessionScope.shoppingCart}" />
 
-            <p>Price: <%= cupcake.getTotalPrice() %> kr.
-            </p>
-            <form action="deletefromcart" method="post">
-                <input type="hidden" name="cupcakeId" value="<%= cupcakes.indexOf(cupcake) %>">
-                <button type="submit" class="btn btn-danger">Remove</button>
-
-            </form>
-        </div>
-    </div>
-        <%   }
-        } else {
-    %>
-    <p>No items in cart</p>
-        <%   }
-    }
-    %>
+    <c:if test="${not empty shoppingCart}">
+        <c:forEach items="${shoppingCart.cupcakes}" var="cupcake">
+            <div class="item">
+                <div class="item card" style="width: 18rem;">
+                    <h5>${cupcake.bottom.details} with ${cupcake.top.details}</h5>
+                    <p>Price: ${cupcake.totalPrice} kr.</p>
+                    <form action="deletefromcart" method="post">
+                        <input type="hidden" name="cupcakeId" value="${shoppingCart.cupcakes.indexOf(cupcake)}">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
+    </c:if>
+    <c:if test="${empty shoppingCart}">
+        <p>No items in cart</p>
+    </c:if>
 <div class="buttons-container">
-    <div class="fixed-center">
+    <div class="center ml-4">
 
 
     <form action="checkout" method="post">
@@ -115,11 +108,12 @@
 
     </div>
 
-    <div class="fixed-center" style="left: 10%;">
+
+    <div class="center ml-4" style="left: 10%;">
         <p class="badge badge-pill badge-primary bg-white text-dark p-3">
-            Number of cupcakes = <%= shoppingCart.getCupcakes().size() %>
+            Number of cupcakes = ${shoppingCart.cupcakes.size()}
             <br>
-            Total price = <%= shoppingCart.getTotalPrice() %> kr.
+            Total price = ${shoppingCart.totalPrice} kr.
         </p>
     </div>
 

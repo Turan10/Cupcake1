@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
-@WebServlet(name = "OrderServlet", value = "/view_orders")
+@WebServlet(name = "OrderServlet", value = "/vieworders")
 public class OrderServlet extends HttpServlet {
     private ConnectionPool connectionPool;
 
@@ -22,16 +22,24 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("orders.jsp");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Order> orderList = null;
+
+
         try {
-            orderList = OrderFacade.getAllOrders(connectionPool);
+            List<Order> orderList = OrderFacade.getAllOrders(connectionPool);
+            HttpSession session = request.getSession();
+            request.setAttribute("orders", orderList);
+
+            request.getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
         } catch (Exception e) {
             throw new RuntimeException(e);
+
         }
-    }
+
+        }
+
 }

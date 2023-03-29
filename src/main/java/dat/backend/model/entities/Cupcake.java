@@ -7,7 +7,7 @@ public class Cupcake {
     private Bottom bottom;
     private int totalPrice;
 
-    public Cupcake(int id, Topping top, Bottom bottom, int totalPrice) {
+    public Cupcake(int id, Topping top, Bottom bottom) {
         this.id = id;
         this.top = top;
         this.bottom = bottom;
@@ -22,8 +22,9 @@ public class Cupcake {
 
 
 
+
     public int calculateTotalPrice() {
-        return top.getPrice() + bottom.getPrice();
+        return this.top.getPrice() + this.bottom.getPrice();
     }
 
     public int getId() {
@@ -39,9 +40,23 @@ public class Cupcake {
     }
 
     public int getTotalPrice() {
-        return totalPrice;
+        return this.totalPrice;
     }
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public void setTop(Topping top) {
+        this.top = top;
+    }
+
+    public void setBottom(Bottom bottom) {
+        this.bottom = bottom;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
