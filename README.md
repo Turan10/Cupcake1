@@ -1,6 +1,6 @@
 # Dokumentation til cupcake projektet
 
-## Indledning
+# Indledning
 
 Vi har fået til opgave at udarbejde et projekt, som kan håndtere et bestillingssystem for vores kunde, Olsker Cupcakes.
 Det er et lille bageri i bornholm, som har ønsket et system som kan bestille cupcakes, med noget topping
@@ -10,7 +10,7 @@ indsætte ordren i en indkøbskurv, og få en ordrebekræftelse på det man har 
 Hertil har vi udarbejdet en domain model, som viser hvordan de forskellige entities er relateret til hinanden og et 
 eer-diagram som viser forholdet af entities på databasen.
 
-## Domæne Model
+# Domæne Model
 
 ![img.png](img.png)
 
@@ -30,7 +30,7 @@ det besluttede vi os om ikke skulle være tilfældet. Vores domæne diagram har 
 fra dem og giv den et ID (sørge for at kunne oprette flere cupcakes til en ordre) - sende den til en ordre som så kan sende det
 til en shoppingcart.
 
-## EER-Diagram
+# EER-Diagram
 
 ![img_1.png](img_1.png)
 
@@ -92,7 +92,7 @@ Vi mangler at implementere test i vores program.
 
 
 
-## Proces
+# Proces
 
 Vores planer i starten for projektet gik rigtig godt. Vi lagde alle sammen en fælles plan, havde en fælles afstemning om hvordan det
 vi ville gribe projektet an, hvor morgenmøder, tidsrum vi arbejdede, spørge hvis der var behov for hjælp og vigtigst af alt, give
@@ -104,7 +104,7 @@ det højt, trods aftalen der blev lavet for start. Det har derfor resulteret i, 
 har lavet langt største delen af opgaven. Vi har slet ikke været gode til være et hold og der har været et enormt stort pres på vores 
 gruppemedlem. 
  
-### Hvad har vi lært?
+## Hvad har vi lært?
 
 Udbyttet af projektet har været mest synlig da vi sad med Jon d. 28 april, hvor de som har været bagud har kunne få noget hjælp og
 få forklaret diverse syntaxer og sammenspillet mellem de enkelte klasse med JSP'en.
@@ -112,7 +112,7 @@ Turan har været i stand til at få udbyttet ved at kode for sig selv, fejle og 
 Vi er sikre på, at hvis planen var fulgt op på og man havde kommet til læren meget tidligere i forløbet, at mange af vores udfordringer
 ikke havde været nært det her niveau.
 
-### Til næste gang
+## Til næste gang
 
 Vi skal have lagt en god plan. Hvis planen ikke afholdes, så reagerer man som gruppemedlem ASAP. Man får snakket med ens gruppe og får
 vendt tingene med dem, således at alle ved hvad der foregår og hvor der er udfordringer. Muligheden for at hjælpe når intet siges eller gøres,
