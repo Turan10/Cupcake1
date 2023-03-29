@@ -8,6 +8,21 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid silver;
+            padding:15px;
+        }
+
+        body {
+            background: pink;
+        }
+
+
+
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><jsp:invoke fragment="header"/></title>

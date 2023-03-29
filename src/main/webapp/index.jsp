@@ -22,9 +22,7 @@
             <p>Du er ikke logget på endnu: <br/>
                 <a href="login.jsp">Login</a></p>
         </c:if>
-        <br>
-        <p>Lav en bruger her:</p>
-        <a href="signup.jsp">Opret ny bruger</a>
+
 
     </jsp:body>
 

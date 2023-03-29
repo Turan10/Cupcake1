@@ -2,7 +2,7 @@
 <%@ page import="dat.backend.model.entities.Bottom" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/Homepage.jsp" %>
+<%@include file="/template.jsp" %>
 <html>
 <head>
     <meta charset="UTF-8">

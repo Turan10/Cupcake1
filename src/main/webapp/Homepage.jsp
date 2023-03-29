@@ -82,6 +82,18 @@
     transform: translate(-50%, -50%);
     }
 
+ .row{
+     margin-top: 50px;
+ }
+
+ .header{
+     margin-top: -180px;
+     margin-left: 300px;
+     position: absolute;
+     transform: translate(-50%, -50%);
+     z-index: 1;
+ }
+
 
 </style>
 </head>
@@ -98,7 +110,8 @@
                 </a>
             </c:when>
             <c:otherwise>
-                <h3>Welcome ${sessionScope.user.username}!</h3>
+                <h3 class="header">Welcome ${sessionScope.user.username}!</h3>
+
             </c:otherwise>
         </c:choose>
     </div>
@@ -110,6 +123,16 @@
 
         </form>
         </c:if>
+
+        <c:if test="${sessionScope.user != null}">
+            <form method="get" action="logout">
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+
+            <form method="post" action="orderonline">
+                <button class="btn btn-primary" type="submit">Order</button>
+            </form>
+        </c:if>
         <div class="col text-center">
             <a href="Homepage.jsp">
             <button type="button" class="btn btn-primary">HOME</button>
@@ -117,21 +140,19 @@
             <a href="about-us.jsp">
             <button type="button" class="btn btn-primary">ABOUT US</button>
             </a>
-            <button type="button" class="btn btn-primary">MENU</button>
-            <a href="login">
-            <button type="button" class="btn btn-primary">ORDER ONLINE</button>
-            </a>
             <a href="contact-us.jsp">
             <button type="button" class="btn btn-primary">CONTACT US</button>
             </a>
         </div>
     </div>
+
+
 </div>
 
 
 
-<div class="logo">
-    <img src="${pageContext.request.contextPath}/images/Logo.png" width="270px;" class="logo"/>
+<img src="${pageContext.request.contextPath}/images/Logo.png" class="img-fluid  ml-4 mt-5" alt="Responsive image">
+
 
 </div>
 <!-- Include Bootstrap JS -->

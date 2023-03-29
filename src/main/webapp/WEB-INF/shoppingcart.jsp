@@ -66,11 +66,20 @@
         <a href="Homepage.jsp">
             <img src="${pageContext.request.contextPath}/images/cupcakelogo.png" width="270px;" class="logo"/>
         </a>
-        <a href="login.jsp">
-            <img src="${pageContext.request.contextPath}/images/loginlogo.png" width="30px;" class="loginLogo"/>
-        </a>
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                <a href="login.jsp">
+                    <img src="${pageContext.request.contextPath}/images/loginlogo.png" width="30px;" class="loginLogo"/>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <h3 class="header">Welcome ${sessionScope.user.username}!</h3>
+
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
+
 <h1>Shopping Cart</h1>
 
 

@@ -25,5 +25,10 @@
             <input type="submit"  value="Log in"/>
         </form>
 
+
+        <br>
+        <p>Lav en bruger her:</p>
+        <a href="signup.jsp">Opret ny bruger</a>
+
     </jsp:body>
 </t:pagetemplate>
