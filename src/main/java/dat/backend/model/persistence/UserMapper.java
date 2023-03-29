@@ -4,8 +4,6 @@ import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
-import javax.servlet.ServletException;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -84,13 +82,10 @@ class UserMapper {
         }
         return userList;
     }
-    
-        }
 
-/*
     static void updateBalance(User user, ConnectionPool connectionPool) throws DatabaseException {
         try (Connection connection = connectionPool.getConnection()) {
-String sql = "UPDATE user SET balance = ? WHERE userName = ?";
+            String sql = "UPDATE user SET balance = ? WHERE userName = ?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
                 ps.setInt(1, user.getBalance());
@@ -106,4 +101,3 @@ String sql = "UPDATE user SET balance = ? WHERE userName = ?";
         }
     }
 }
-*/
