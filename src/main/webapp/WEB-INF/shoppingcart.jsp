@@ -73,7 +73,7 @@
                 </a>
             </c:when>
             <c:otherwise>
-                <h3 class="header">Welcome ${sessionScope.user.username}!</h3>
+                <h3 class="header">Here's your shoppingcart ${sessionScope.user.username}!</h3>
 
             </c:otherwise>
         </c:choose>
