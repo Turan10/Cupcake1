@@ -13,6 +13,7 @@ eer-diagram som viser forholdet af entities på databasen.
 ##Domæne Model
 
 ![img.png](img.png)
+
 Vores domæne model beskriver hvordan vi havde udtænkt vores opgave til at starte med, og hvad systemet arbejder med.
 Vi havde tanke om, at vi ville lave både en customer, en employee og en administrator. Hver customer har en 1 til 1* relation
 til en order, da en customer kan have mange order, men der kun må være en customer. Vi havde tænkt os, at vi ville samle et 
@@ -32,6 +33,7 @@ til en shoppingcart.
 ##EER-Diagram
 
 ![img_1.png](img_1.png)
+
 Vores EER diagram er blevet ændret en del gange henover opgaven - Vi havde flere tabeller til at starte med som vi har kortet ned til 6.
 Vores top og bottom er tilknyttet til cupcake tabellen med FK's, således at vi kan få info fra de tabeller ved cupcake tabellen.
 Ved vores order tabel, har vi valgt at bruge username som en sekundær PK som er tilkoblet attributen userName i user tabellen.
