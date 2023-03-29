@@ -1,67 +1,47 @@
-# default-web-applikation med page controller
+# Dokumentation til cupcake projektet
 
-## Startkode på 2. semester efterår 2022
 
-Dette repository er lavet i forbindelse med 2. semester på
-Datamatikeruddannelsen i Lyngby og på Bornholm efterår 2022.
 
-## Java version
-I pom.xml er diverse dependencies valgt, så projektet kan bygges og køres i Java 8. Nyere versioner af 
-Java vil formentlig også fungere, men vi har kun testet med version 8 og 11.
+# Særlige forhold
 
-## Tomcat
-Brug version 9.x
+### Sessionscope
 
-## Deployment på Droplet
-T.B.D.
+Det skal påpeges at shoppingcart kører i sessionscope. Dette gøres da der ikke tale om indhold der skal gemmes i en database, men blot et sted for brugeren at kunne bekræfte sine valg.
+Når brugeren vælger at fortsætte fra shoppingcart til checkout, gemmes indholdet i databasen i form af 2 tabeller. Den ene for ordren, mens den anden er for de cupcakes der er bestilt. Dette gøres for at kunne holde styr på hvilke cupcakes der er bestilt, samt hvilken ordre de hører til. Dette gøres ved at bruge ordreID som foreign key i cupcake tabellen.
 
-## Du skal gøre følgende for at få webapplikationen i luften:
+### Exceptions
 
-1. Beslut dig for hvad projektets database skal hedde.
-2. Først skal du clone projektet eller downloade en zip-fil med projektet til din arbejdsstation.
-   1. Clone: `git clone git@github.com:jonbertelsen/startcode_2sem_2022.git ditprojektnavn`
-   2. Slet .git folderen, så du kan gøre projektet til dit eget git-projekt
-      1. > `rm -rf .git/`
-   3. Opret dit eget git repository:
-      1. > `git init`
-2. Det er en god idé at ændre folder-navnet inden du åbner projektet i IntelliJ. Det kan også være en god ide at åbne pom.xml i en simpel editor og rette "name" og "artifactid" før du åbner projektet i IntelliJ. På den måde er navngivningen korrekt fra starten.
-3. Åbn Workbench og kør en tilpasset (med dit databasenavn i stedet for `startcode`) version af sql-filen `startcode.sql`, som ligger i mappen `resources`. Den opretter en database med en user-tabel og en test-database.
-4. Du skal evt. ændre kodeord til databasen i projektet. Det gøres i filerne: `/persistence/ConnectionPool` i linie 14 og 15. Du skal også ændre i UserMapperTest.
-5. Refactor `startcode` til dit eget projekt alle de steder, hvor det er relevant. Fx her:
-   1. I projektroden
-   2. I pom.xml (`artifactId`og `name` elementerne)
-6. Til sidst skal du lave en Tomcat konfiguration. Dvs, 
-   1. klik på "Add Configuration ..."
-   2. Klik på "+" og vælg "Tomcat Server Local".
-   3. Klik på "Fix knappen"
-   4. Vælg war-exploded som deployment type
-   5. Nu kan du klikke på den grønne play-knap for at bygge og køre projektet.
-7. Lav et repo på GitHub til dit projekt
+Exceptions håndteres i servlets, og i mapperne. Mapperne sender database exceptions videre til servlets, som så håndterer dem. Dette gøres for at sikre at exceptions ikke bliver sendt videre til jsp siderne, da dette kan give en sikkerhedshul.
+Vi har i vores kode en klasse for DatabaseExceptions som vi gør brug af. Dette gøres for at sikre at exceptions bliver håndteret på samme måde i hele vores kode. Dette gøres ved at lave en metode der håndterer exceptions, og som så bliver kaldt i alle mapperne. 
 
-## Bemærkninger
+### Validering
 
-### Startkoden indeholder følgende:
+Validering af brugerinput gøres under oprettelsen af en bruger, og login.
+For oprettelsen tjekkes der om brugeren skriver den samme password i begge felter (password og repeat password). Dette gøres ved at sammenligne de to felter, og hvis de ikke er ens, bliver brugeren sendt tilbage til signup siden med en fejlbesked.
+For login tjekkes der om inputtet i usernamme og password eksistere i databasen. Dette gøres ved at kalde en metode i UserMapper som tjekker om brugeren eksistere i databasen. Hvis brugeren ikke eksistere, bliver brugeren sendt tilbage til login siden med en fejlbesked.
 
-- Strukturering i passende packages for overblik (MVC). Noget af strukturen er også givet af Maven, og kan ikke laves om. F.eks. opdelingen i `/java` og `/webapp`.
-- Javaservlets
-- JSP sider. Læg dem i WEB-INF som kun skal tilgås via en servlet. Der ligger allerede `welcome.jsp`
-- En super skrabet css-fil til styling
-- Datamapper for user-tabellen, som anvender en connection pool. Den er package-protected
-- En facadeklasse `UserFacade`, der bruges til at tilgå dine mappermetoder
-- Fejlhåndtering med exceptions for databaseoperationer. Den skriver også til Tomcat log.
-- Integrationstest af datamapperen for User.
+### Brugertype
 
-### Funktionelt kan applikationen:
+Vi har valgt at lave et felt i vores user tabel kaldet role. 
+Denne role skal differentiere brugerens rolle i vores system.
+Vi har valgt at lave 2 brugertyper, nemlig user/kunde og admin.
+Dette har vi gjort for at kunne sikre at brugere ikke kan tilgå sider de ikke har adgang til.
+Brugertyperne bruges i jdbc, således at der tjekkes om brugeren har den korrekte rolle, før de kan tilgå admin relaterede sider.
 
-- Vise en forside med links til undersider, som endnu ikke er lavet
-- Logge en user på. Der findes to brugere i databasen.
-    1. `user` med password: `1234` (rolle: `user`)
-    2. `admin` med password: `1234` (rolle: `admin`)
-- Man kan se på `index.jsp` og `WEB-INF/welcome.jsp` hvordan man kan udnytte om en user er logget på eller ej.
-- Hvis man indtaster ugyldige data under indlogning, bliver man sendt til en en fejlside.
-- Logge en bruger af
-- Metoden `isRoleAllowed(String role, HttpServletRequest request)` som ligger i pakken `services`. Den tjekker om en given bruger matcher en given rolle.
 
-## MVC arkitektur
+### Sikkerhed
+Udover vores tjek på login og opret brugere, samt ikke at kunne ligge en ordre uden at have nok midler, har vi ikke implementeret sikkerhed. 
 
-![](documentation/mvc.jpg)
+
+# Status på implementation
+Vi har i vores gruppe haft udfordringer med at få kodet funktionel kode. 
+Dette har gjort at vi ikke har nået at implementere alle de krav der er stillet i opgaven, og har derfor valgt at håndplukke de essentielle elementer, og krav for at kunne have en kode der virker.
+Dermed kan man med vores program, logge ind, eller oprette sig, sammensætte en cupcake, og bestille den.
+
+###
+Vi mangler at implementere en side hvor brugeren har adgang til alle sine ordre, og det der er bestilt på hver ordre. 
+Vi mangler samtidig også at style vores sider, så de er mere brugervenlige.
+Admin mangler en jsp side, hvor admin kan se alle ordre, og hvad der er bestilt på hver ordre.
+I vores shoppingcart har vi ikke implementeret en funktion for afhentningstidspunkt.
+
+Vi mangler at implementere test i vores program.
