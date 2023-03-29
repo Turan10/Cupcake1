@@ -31,7 +31,6 @@ public class OrderServlet extends HttpServlet {
 
         try {
             List<Order> orderList = OrderFacade.getAllOrders(connectionPool);
-            System.out.println("OrderServlet: Order list size: " + orderList.size());
             HttpSession session = request.getSession();
             request.setAttribute("orders", orderList);
 
