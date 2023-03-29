@@ -1,6 +1,7 @@
 # Dokumentation til cupcake projektet
 
 ##Indledning
+
 Vi har fået til opgave at udarbejde et projekt, som kan håndtere et bestillingssystem for vores kunde, Olsker Cupcakes.
 Det er et lille bageri i bornholm, som har ønsket et system som kan bestille cupcakes, med noget topping
 og bund til. Kunden skal bl.a kunde bestille en ordre for en cupcake, hvor en valgfri bund/top kan tilvælges,
@@ -10,6 +11,7 @@ Hertil har vi udarbejdet en domain model, som viser hvordan de forskellige entit
 eer-diagram som viser forholdet af entities på databasen.
 
 ##Domæne Model
+
 ![img.png](img.png)
 Vores domæne model beskriver hvordan vi havde udtænkt vores opgave til at starte med, og hvad systemet arbejder med.
 Vi havde tanke om, at vi ville lave både en customer, en employee og en administrator. Hver customer har en 1 til 1* relation
@@ -28,6 +30,7 @@ fra dem og giv den et ID (sørge for at kunne oprette flere cupcakes til en ordr
 til en shoppingcart.
 
 ##EER-Diagram
+
 ![img_1.png](img_1.png)
 Vores EER diagram er blevet ændret en del gange henover opgaven - Vi havde flere tabeller til at starte med som vi har kortet ned til 6.
 Vores top og bottom er tilknyttet til cupcake tabellen med FK's, således at vi kan få info fra de tabeller ved cupcake tabellen.
@@ -88,6 +91,7 @@ Vi mangler at implementere test i vores program.
 
 
 ##Proces
+
 Vores planer i starten for projektet gik rigtig godt. Vi lagde alle sammen en fælles plan, havde en fælles afstemning om hvordan det
 vi ville gribe projektet an, hvor morgenmøder, tidsrum vi arbejdede, spørge hvis der var behov for hjælp og vigtigst af alt, give
 det projektet alt det vi har. Som projektet forløb sig, kom 3 fra gruppen mere og mere bagud. Dette blev ikke kommunikeret ud, hvilket
@@ -99,6 +103,7 @@ har lavet langt største delen af opgaven. Vi har slet ikke været gode til vær
 gruppemedlem. 
  
 ###Hvad har vi lært?
+
 Udbyttet af projektet har været mest synlig da vi sad med Jon d. 28 april, hvor de som har været bagud har kunne få noget hjælp og
 få forklaret diverse syntaxer og sammenspillet mellem de enkelte klasse med JSP'en.
 Turan har været i stand til at få udbyttet ved at kode for sig selv, fejle og spurgt om eksternt hjælp når behovet har været der. 
@@ -106,6 +111,7 @@ Vi er sikre på, at hvis planen var fulgt op på og man havde kommet til læren 
 ikke havde været nært det her niveau.
 
 ###Til næste gang
+
 Vi skal have lagt en god plan. Hvis planen ikke afholdes, så reagerer man som gruppemedlem ASAP. Man får snakket med ens gruppe og får
 vendt tingene med dem, således at alle ved hvad der foregår og hvor der er udfordringer. Muligheden for at hjælpe når intet siges eller gøres,
 bliver i den grad udfordret hvis ingen i gruppen handler på en udfordringer man har.
