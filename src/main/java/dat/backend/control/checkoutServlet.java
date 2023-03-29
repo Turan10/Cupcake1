@@ -44,7 +44,7 @@ public class checkoutServlet extends HttpServlet {
 
                try {
 
-                   OrderFacade.createOrder(order, connectionPool);
+                   OrderFacade.createOrder(order,user.getUsername(), connectionPool);
                    UserFacade.updateBalance(user, connectionPool);
 
 

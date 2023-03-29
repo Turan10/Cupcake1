@@ -1,7 +1,9 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.entities.Bottom;
 import dat.backend.model.entities.Cupcake;
 import dat.backend.model.entities.Order;
+import dat.backend.model.entities.Topping;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
@@ -10,24 +12,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMapper {
+
+
+
+
     public static List<Order> getAllOrders(ConnectionPool connectionPool) {
         List<Order> orderList = new ArrayList<>();
+        Order order = null;
 
-        String sql = "select * from order";
+        String sql = "SELECT o.username, o.orderID, o.created, o.totalPrice, t.id, t.price, t.details AS topName, b.id, b.price, b.details AS bottomName " +
+                "FROM cupcake.order o " +
+                "JOIN cupcake c ON o.orderID = c.orderID " +
+                "JOIN top t ON c.topID = t.id " +
+                "JOIN bottom b ON c.bottomID = b.id " +
+                "ORDER BY o.created DESC";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Timestamp created = rs.getTimestamp("Created");
-                    int orderID = rs.getInt("OrderID");
-                    int customerID = rs.getInt("customerID");
-                    int cupcakeID = rs.getInt("CupcakeID");
-                    int totalPrice = rs.getInt("Total price");
+                    int orderID = rs.getInt("orderID");
+                    Timestamp created = rs.getTimestamp("created");
+                    int totalPrice = rs.getInt("totalPrice");
+                    int topId = rs.getInt("id");
+                    String topName = rs.getString("topName");
+                    int topPrice = rs.getInt("price");
+                    int bottomId = rs.getInt("id");
+                    String bottomName = rs.getString("bottomName");
+                    int bottomPrice = rs.getInt("price");
+                    String username = rs.getString("username");
 
-                  //  orderList.add(new Order(orderID,cupcakeID,totalPrice));
+
+
+                    if (order == null || order.getOrderID() != orderID) {
+                        order = new Order(orderID, created, totalPrice, new ArrayList<>());
+                        order.setUsername(username);
+                        orderList.add(order);
+                    }
+                    Cupcake cupcake = new Cupcake(new Topping(topId, topName, topPrice), new Bottom(bottomId, bottomName, bottomPrice));
+                    order.getCupcakeList().add(cupcake);
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -37,28 +61,15 @@ public class OrderMapper {
         return orderList;
     }
 
-    public static void removeOrder(Timestamp timestamp, int orderID, int cupcakeId, int totalPrice, ConnectionPool connectionPool) {
-        String sql = "DELETE FROM `order` WHERE timestamp = ? AND orderID = ? AND cupcakeId = ? AND totalPrice = ?";
 
 
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setTimestamp(1, timestamp);
-                ps.setInt(2, orderID);
-                ps.setInt(3, cupcakeId);
-                ps.setInt(4, totalPrice);
-                ps.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void createOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
-        String insertIntoOrderQuery = "INSERT INTO cupcake.order (created, totalPrice) VALUES (?, ?)";
-        String insertIntoCupcakeQuery = "INSERT INTO cupcake.cupcake (orderId, topId, buttomId) VALUES (?, ?, ?)";
+    static void createOrder(Order order, String username, ConnectionPool connectionPool) throws DatabaseException {
+        String insertIntoOrderQuery = "INSERT INTO cupcake.order (created, totalPrice, username) VALUES (?, ?, ?)";
+        String insertIntoCupcakeQuery = "INSERT INTO cupcake.cupcake (orderId, topId, bottomId) VALUES (?, ?, ?)";
 
         // this one is for the order
+
+
 
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(insertIntoOrderQuery, Statement.RETURN_GENERATED_KEYS)){
@@ -66,6 +77,7 @@ public class OrderMapper {
                 System.out.println(time);
                 ps.setString(1, time);
                 ps.setInt(2, order.getTotalPrice());
+                ps.setString(3, username);
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if(rs.next()){
@@ -89,7 +101,7 @@ try(Connection connection = connectionPool.getConnection()){
                 }
             }
         }catch (SQLException e){
-            throw new DatabaseException(e, "Could not create cupcake order");
+            throw new DatabaseException(e, "Could not create cupcake");
         }
 
     }
