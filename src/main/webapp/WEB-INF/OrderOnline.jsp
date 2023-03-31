@@ -72,7 +72,7 @@
 
             <c:choose>
                 <c:when test="${step == null || step == 'bottoms'}">
-                    <h2 class="text-center text-white">Choose your cupcake bottom:</h2>
+                    <h2 class="text-center text-black">Choose your cupcake bottom:</h2>
                     <form action="orderonline" method="post">
                         <input type="hidden" name="step" value="toppings">
                         <div class="item-container">
@@ -93,8 +93,8 @@
                     </form>
                 </c:when>
                 <c:when test="${step == 'toppings'}">
-                    <h2 class="text-center text-white">Selected Cupcake bottom:</h2>
-                    <div class="text-center text-white">
+                    <h2 class="text-center text-dark">Selected Cupcake bottom:</h2>
+                    <div class="text-center text-dark">
                         <p><strong>Details:</strong>${requestScope.bottomOfChoice.details}
                         </p>
                         <p><strong>Price:</strong>${requestScope.bottomOfChoice.price} kr.
@@ -102,7 +102,7 @@
                     </div>
                     <br>
 
-                    <h2 class="text-center text-white">Choose your cupcake topping:</h2>
+                    <h2 class="text-center text-black">Choose your cupcake topping:</h2>
                     <form action="orderonline" method="post">
                         <input type="hidden" name="step" value="complete">
                         <input type="hidden" name="bottomId" value="${param.bottomId}">
