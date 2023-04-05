@@ -6,43 +6,62 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
+
+
+<!DOCTYPE html>
+<html lang="da">
+
 <head>
-    <title>Signup</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>signUp</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Basic-icons.css">
 </head>
-<body>
 
-<h1>Registrer dig på siden her</h1>
+<body style="background-color: lightpink;">
+<nav class="navbar navbar-light navbar-expand-md">
+    <div class="container-fluid"><a class="navbar-brand" href="home.jsp">Olsker's Cupcakes</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="orderonline">Order</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.jsp">About us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact-us.jsp">Contact us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="py-4 py-xl-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="font-monospace">Opret profil</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 col-xl-4">
+                <div class="card mb-5">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+                        </svg></div>
 
-<p>Indtast følgende info:</p>
-
-<br>
-
-<!-- $[] javakode - hvis username eller password fejler, kommer de to pop ops op på siden -->
-<label style="color: red">${requestScope.userExists}</label><br><br>
-<label >${requestScope.passwordMismatch}</label><br><br>
-
-
-<form action="signup" method="post">
-
-    Username: <input type="text" name="username" placeholder="e.g user123"> <br><br>
-
-    Password: <input type="password" name="password"> <br><br>
-
-    Confirm Password: <input type="password" name="confirmpassword"> <br><br>
-
-    <input class="btn btn-primary" type="submit" value="Sign up"/>
-</form>
-
-<a class="btn btn-primary" href="Homepage.jsp">Tilbage til forsiden!</a>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-
-
+                        <form action="signup" method="post">
+                            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Email"></div>
+                            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+                            <div class="mb-3"><input class="form-control" type="password" name="confirmpassword" placeholder="Confirm password"></div>
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Opret profil</button></div>
+                        </form>
+                        ${requestScope.passwordMismatch}
+                        ${requestScope.userExists}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 </html>

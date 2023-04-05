@@ -46,11 +46,14 @@ public class SignUpServlet extends HttpServlet {
                 if (username.toLowerCase().equals(u.getUsername().toLowerCase())) {
                     request.setAttribute("userExists", "User already exists");
                     request.getRequestDispatcher("signup.jsp").forward(request, response);
+
                     return;
+
                 }
             }
                 if (!password.equals(confirmPassword)){
                     request.setAttribute("passwordMismatch", "Password is not identical, please try again");
+                    System.out.println("Password is not identical, please try again");
                     request.getRequestDispatcher("signup.jsp").forward(request, response);
                     return;
                 }
@@ -58,9 +61,11 @@ public class SignUpServlet extends HttpServlet {
                     //createUser method in UserFacade so that it gets created to our DB right away
                     User user = UserFacade.createUser(username, password, "Customer", connectionPool);
 
+
+
                     //"user" = current user when logged in
                     request.getSession().setAttribute("user", user);
-                    request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+                    request.getRequestDispatcher("home.jsp").forward(request, response);
 
 
         } catch (DatabaseException e) {

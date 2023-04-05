@@ -45,6 +45,7 @@ class UserMapper {
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ps.setString(3, role);
+                ps.setInt(4, 100);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
                     user = new User(username, password, role, 100);
