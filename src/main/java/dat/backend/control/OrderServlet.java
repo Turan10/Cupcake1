@@ -23,12 +23,6 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         try {
             List<Order> orderList = OrderFacade.getAllOrders(connectionPool);
             HttpSession session = request.getSession();
@@ -39,6 +33,13 @@ public class OrderServlet extends HttpServlet {
             throw new RuntimeException(e);
 
         }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 
         }
 

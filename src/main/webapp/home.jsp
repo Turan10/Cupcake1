@@ -51,6 +51,16 @@
                                 </a>
                             </c:otherwise>
                         </c:choose>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <c:choose>
+                        <c:when test="${sessionScope.user.role == 'admin'}">
+                            <a class="nav-link" href="vieworders"> View Orders </a>
+                        </c:when>
+                        </c:choose>
+                    </li>
 
                 </ul>
             </div>

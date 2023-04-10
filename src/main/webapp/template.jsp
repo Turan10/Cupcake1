@@ -88,7 +88,7 @@
 <body>
 <div class="container-fluid d-flex justify-content-center">
     <div class="logo">
-        <a href="Homepage.jsp">
+        <a href="home.jsp">
             <img src="${pageContext.request.contextPath}/images/cupcakelogo.png" width="270px;" class="logo"/>
         </a>
         <c:choose>
@@ -114,7 +114,7 @@
             </form>
         </c:if>
         <div class="col text-center">
-            <a href="Homepage.jsp">
+            <a href="home.jsp">
                 <button type="button" class="btn btn-primary">HOME</button>
             </a>
             <a href="about-us.jsp">
