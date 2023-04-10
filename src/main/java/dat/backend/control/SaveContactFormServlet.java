@@ -27,6 +27,7 @@ public class SaveContactFormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         String sql = "INSERT INTO Cupcake.contactus (fullname, email, inquiry, subject) VALUES (?, ?, ?, ?)";
 

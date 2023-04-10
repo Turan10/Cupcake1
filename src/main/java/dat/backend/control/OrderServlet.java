@@ -14,6 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "OrderServlet", value = "/vieworders")
 public class OrderServlet extends HttpServlet {
+
     private ConnectionPool connectionPool;
 
     public void init() {
@@ -22,6 +23,7 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         try {
             List<Order> orderList = OrderFacade.getAllOrders(connectionPool);

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="da">
-<html>
 
 <head>
     <meta charset="UTF-8">
@@ -157,5 +157,4 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
-</html>
 </html>

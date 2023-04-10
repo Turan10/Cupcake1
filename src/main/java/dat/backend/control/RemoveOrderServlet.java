@@ -19,6 +19,7 @@ public class RemoveOrderServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         //orderID parameter
         int orderID = Integer.parseInt(request.getParameter("orderID"));

@@ -9,6 +9,7 @@ import java.io.IOException;
 public class ToHomePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         // send user to home page
         request.getRequestDispatcher("home.jsp").forward(request, response);
