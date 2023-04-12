@@ -25,7 +25,8 @@
 <p>Sorry, you don't have enough money in your account to make this purchase.</p>
 
 <p>Would you like to make a deposit?</p>
-<button type="submit" class="btn btn-primary" formaction="https://www.danskebank.dk/privat">Try this</button>
+<button type="submit" class="btn btn-primary" href="https://www.danskebank.dk/privat">Try this</button>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
